@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>临溪纸马铺</title>
+    <meta
+      name="description"
+      content="原创民俗悬疑网站小游戏：临溪纸马铺。通过搜索中文关键词解锁隐藏档案。"
+    />
+    <meta name="theme-color" content="#171a16" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="临溪纸马铺" />
+    <meta property="og:title" content="临溪纸马铺" />
+    <meta property="og:description" content="一个通过搜索中文关键词推进的民俗悬疑网站小游戏。" />
+    <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23d6bf86'/%3E%3Cpath d='M12 36 25 18 48 24 38 50Z' fill='%23a6291d'/%3E%3C/svg%3E"
+    />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ash" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="返回临溪纸马铺首页">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="horse-cut"></span>
+        </span>
+        <span>
+          <strong>临溪纸马铺</strong>
+          <small>香烛 纸扎 冥包代写 节俗用品</small>
+        </span>
+      </a>
+
+      <form class="search" id="search-form" autocomplete="off">
+        <label class="sr-only" for="search-input">搜索关键词</label>
+        <input id="search-input" name="q" type="search" placeholder="输入一个中文关键词" />
+        <button type="submit">查档</button>
+      </form>
+
+      <div class="share-actions">
+        <button class="header-button" id="share-game" type="button">分享</button>
+        <button class="header-button" id="install-game" type="button" hidden>安装</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="side-panel" aria-label="游戏进度">
+        <section class="notice seal-block">
+          <p class="eyebrow">玩法</p>
+          <h1>没有进度条，只有被藏起来的档案。</h1>
+          <p>
+            阅读页面，找出可疑的中文词，放进上方搜索框。每次只搜一个关键词。页脚编号越大，越接近三年前临溪河祭的真相。
+          </p>
+          <button class="plain-button" id="show-intro" type="button">查看引言</button>
+        </section>
+
+        <section class="discovered">
+          <div class="list-head">
+            <p class="eyebrow">已发现</p>
+            <button class="icon-button" id="reset-progress" type="button" title="清空进度">
+              清空
+            </button>
+          </div>
+          <ol id="found-list"></ol>
+        </section>
+      </aside>
+
+      <section class="main-panel" aria-live="polite">
+        <nav class="shop-tabs" aria-label="基础页面">
+          <button class="tab is-active" data-view="home" type="button">首页</button>
+          <button class="tab" data-view="goods" type="button">纸扎目录</button>
+          <button class="tab" data-view="notice" type="button">节俗公告</button>
+          <button class="tab" data-view="room" type="button">后屋照片</button>
+        </nav>
+
+        <article id="content" class="paper-sheet"></article>
+      </section>
+    </main>
+
+    <div class="modal" id="result-modal" hidden>
+      <div class="modal-backdrop" data-close="true"></div>
+      <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="close-button" data-close="true" type="button" aria-label="关闭">x</button>
+        <p class="eyebrow">检索结果</p>
+        <h2 id="modal-title">搜索结果</h2>
+        <div id="modal-body"></div>
+      </section>
+    </div>
+
+    <footer class="site-footer">
+      <span>本网站为原创虚构悬疑游戏，与真实人物、地点、宗教或民俗团体无关。</span>
+      <span id="page-counter">00/24</span>
+    </footer>
+
+    <script src="game.js"></script>
+  </body>
+</html>
