@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780">
+  <rect width="1200" height="780" fill="#18383b"/>
+  <rect x="240" y="120" width="720" height="520" rx="10" fill="#e7d5a6" transform="rotate(2 600 380)"/>
+  <g stroke="#7a6642" stroke-width="3">
+    <line x1="305" y1="220" x2="865" y2="245"/>
+    <line x1="300" y1="295" x2="860" y2="320"/>
+    <line x1="295" y1="370" x2="855" y2="395"/>
+    <line x1="290" y1="445" x2="850" y2="470"/>
+    <line x1="285" y1="520" x2="785" y2="543"/>
+  </g>
+  <rect x="700" y="475" width="145" height="55" fill="#a53b2c" opacity=".2" transform="rotate(2 700 475)"/>
+</svg>

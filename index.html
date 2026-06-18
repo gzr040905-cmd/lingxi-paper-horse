@@ -3,98 +3,162 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>临溪纸马铺</title>
-    <meta
-      name="description"
-      content="原创民俗悬疑网站小游戏：临溪纸马铺。通过搜索中文关键词解锁隐藏档案。"
-    />
-    <meta name="theme-color" content="#171a16" />
+    <title>临溪纸马铺 · 民俗调查档案</title>
+    <meta name="description" content="临溪县民俗异闻调查档案。检索线索，核对证物，追查三年前河祭旧案。" />
+    <meta name="theme-color" content="#102f30" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="临溪纸马铺" />
     <meta property="og:title" content="临溪纸马铺" />
-    <meta property="og:description" content="一个通过搜索中文关键词推进的民俗悬疑网站小游戏。" />
+    <meta property="og:description" content="一桩藏在县志、账簿和纸扎铺旧闻里的民俗悬疑案。" />
     <meta property="og:type" content="website" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23d6bf86'/%3E%3Cpath d='M12 36 25 18 48 24 38 50Z' fill='%23a6291d'/%3E%3C/svg%3E"
-    />
+    <link rel="icon" href="icon.svg" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="ash" aria-hidden="true"></div>
-    <header class="site-header">
-      <a class="brand" href="#home" aria-label="返回临溪纸马铺首页">
-        <span class="brand-mark" aria-hidden="true">
-          <span class="horse-cut"></span>
-        </span>
-        <span>
-          <strong>临溪纸马铺</strong>
-          <small>香烛 纸扎 冥包代写 节俗用品</small>
-        </span>
-      </a>
+    <div id="app-shell" class="app-shell">
+      <header class="desk-header">
+        <a class="brand" href="#evidence-stage" aria-label="返回证据台">
+          <span class="brand-seal" aria-hidden="true">临溪</span>
+          <span class="brand-copy">
+            <strong>临溪县异闻调查档案</strong>
+            <small>卷宗编号 LX-03-17 · 内部查阅</small>
+          </span>
+        </a>
 
-      <form class="search" id="search-form" autocomplete="off">
-        <label class="sr-only" for="search-input">搜索关键词</label>
-        <input id="search-input" name="q" type="search" placeholder="输入一个中文关键词" />
-        <button type="submit">查档</button>
-      </form>
+        <div id="global-search" class="global-search">
+          <form id="search-form" class="search" role="search" autocomplete="off">
+            <label for="search-input">全卷检索</label>
+            <div class="search-field">
+              <input id="search-input" name="q" type="search" inputmode="search" placeholder="输入人名、地名或物证" />
+              <button type="submit">查档</button>
+            </div>
+          </form>
+          <div id="search-feedback" class="search-feedback" aria-live="polite" hidden>等待检索指令</div>
+        </div>
 
-      <div class="share-actions">
-        <button class="header-button" id="share-game" type="button">分享</button>
-        <button class="header-button" id="install-game" type="button" hidden>安装</button>
+        <div class="desk-actions" aria-label="档案操作">
+          <button id="share-game" class="quiet-button" type="button">分享案卷</button>
+          <button id="install-game" class="quiet-button" type="button" hidden>安装</button>
+        </div>
+      </header>
+
+      <div id="update-banner" class="update-banner" role="status" hidden>
+        档案已更新，请刷新后继续查阅。
       </div>
-    </header>
 
-    <main class="layout">
-      <aside class="side-panel" aria-label="游戏进度">
-        <section class="notice seal-block">
-          <p class="eyebrow">玩法</p>
-          <h1>没有进度条，只有被藏起来的档案。</h1>
-          <p>
-            阅读页面，找出可疑的中文词，放进上方搜索框。每次只搜一个关键词。页脚编号越大，越接近三年前临溪河祭的真相。
-          </p>
-          <button class="plain-button" id="show-intro" type="button">查看引言</button>
-        </section>
-
-        <section class="discovered">
-          <div class="list-head">
-            <p class="eyebrow">已发现</p>
-            <button class="icon-button" id="reset-progress" type="button" title="清空进度">
-              清空
-            </button>
+      <main class="investigation-desk">
+        <aside id="case-sidebar" class="case-sidebar" aria-label="案卷目录">
+          <button class="overlay-close" data-close-overlay type="button" aria-label="关闭案情面板">关闭</button>
+          <div class="rail-heading">
+            <p>临溪县档案馆</p>
+            <span>绝密 · 乙级</span>
           </div>
-          <ol id="found-list"></ol>
+
+          <section class="case-cover" id="case-cover">
+            <p class="folio">民俗异闻 · 第三卷</p>
+            <h1>纸马铺<br />河祭旧案</h1>
+            <p>三年前，一只没有写名的纸马顺流而下。三年后，表姐失踪，旧账重现。</p>
+            <button id="start-game" class="primary-button" type="button">启封案卷</button>
+            <button id="show-intro" class="text-button" type="button">重读案情提要</button>
+          </section>
+
+          <section class="case-status" aria-labelledby="progress-title">
+            <div class="section-rule">
+              <h2 id="progress-title">调查进度</h2>
+              <span id="page-counter">00/24</span>
+            </div>
+            <div id="chapter-progress" class="chapter-progress" aria-label="章节进度">
+              <span style="--progress: 0%"></span>
+            </div>
+            <div id="current-question" class="current-question">
+              <small>当前待查</small>
+              <p>纸马铺为何在河祭后闭门三日？</p>
+            </div>
+          </section>
+
+          <nav class="shop-tabs archive-index" aria-label="案卷章节">
+            <button class="tab is-active" data-chapter="chapter-1" type="button"><span>壹</span>名字先到</button>
+            <button class="tab" data-chapter="chapter-2" type="button"><span>贰</span>活人被写成死人</button>
+            <button class="tab" data-chapter="chapter-3" type="button"><span>叁</span>底舱与替身</button>
+            <button class="tab" data-chapter="chapter-4" type="button"><span>肆</span>旧名回潮</button>
+          </nav>
+        </aside>
+
+        <section id="evidence-stage" class="evidence-stage" aria-label="证据查阅台">
+          <header class="stage-heading">
+            <div>
+              <p class="eyebrow">正在查阅</p>
+              <h2>临溪纸马铺 · 公开档案</h2>
+            </div>
+            <span class="stage-stamp">复印件</span>
+          </header>
+
+          <div id="evidence-content" class="evidence-content" aria-live="polite">
+            <article id="content" class="paper-sheet"></article>
+          </div>
+
+          <div id="ending-actions" class="ending-actions" hidden>
+            <button type="button" class="primary-button">封存结案</button>
+            <button type="button" class="quiet-button">重看证词</button>
+          </div>
         </section>
-      </aside>
 
-      <section class="main-panel" aria-live="polite">
-        <nav class="shop-tabs" aria-label="基础页面">
-          <button class="tab is-active" data-view="home" type="button">首页</button>
-          <button class="tab" data-view="goods" type="button">纸扎目录</button>
-          <button class="tab" data-view="notice" type="button">节俗公告</button>
-          <button class="tab" data-view="room" type="button">后屋照片</button>
-        </nav>
+        <aside id="clue-sidebar" class="clue-sidebar" aria-label="线索与提示">
+          <button class="overlay-close" data-close-overlay type="button" aria-label="关闭线索面板">关闭</button>
+          <section class="recent-clues">
+            <div class="section-rule">
+              <h2>最近线索</h2>
+              <span>按发现排序</span>
+            </div>
+            <div id="recent-clues" aria-live="polite"></div>
+          </section>
 
-        <article id="content" class="paper-sheet"></article>
-      </section>
-    </main>
+          <section class="cluebook" aria-labelledby="cluebook-title">
+            <div class="section-rule">
+              <h2 id="cluebook-title">线索簿</h2>
+              <button id="reset-progress" class="icon-button" type="button" title="清空调查进度">清空</button>
+            </div>
+            <div id="clue-tabs" class="clue-tabs" role="tablist" aria-label="线索分类">
+              <button class="is-active" data-clue-tab="evidence" type="button" role="tab" aria-selected="true">证据</button>
+              <button data-clue-tab="people" type="button" role="tab" aria-selected="false">人物</button>
+              <button data-clue-tab="places" type="button" role="tab" aria-selected="false">地点</button>
+              <button data-clue-tab="timeline" type="button" role="tab" aria-selected="false">时间</button>
+            </div>
+            <div id="cluebook"><p class="empty-note">检索命中的词条会钉在这里。</p></div>
+          </section>
+
+          <section id="hint-panel" class="hint-panel">
+            <p class="eyebrow">值班员批注</p>
+            <p>留意重复出现的姓氏，以及被涂改过的日期。一次只检索一个中文词。</p>
+          </section>
+        </aside>
+      </main>
+
+      <nav id="mobile-nav" class="mobile-nav" aria-label="手机调查导航">
+        <button type="button" data-mobile-panel="case"><span aria-hidden="true">卷</span>案情</button>
+        <a class="is-active" href="#evidence-stage"><span aria-hidden="true">证</span>证据</a>
+        <button type="button" data-mobile-panel="clues"><span aria-hidden="true">签</span>线索</button>
+        <button type="button" data-mobile-panel="search"><span aria-hidden="true">检</span>查档</button>
+      </nav>
+    </div>
 
     <div class="modal" id="result-modal" hidden>
       <div class="modal-backdrop" data-close="true"></div>
       <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <button class="close-button" data-close="true" type="button" aria-label="关闭">x</button>
-        <p class="eyebrow">检索结果</p>
-        <h2 id="modal-title">搜索结果</h2>
+        <button class="close-button" data-close="true" type="button" aria-label="关闭">×</button>
+        <p class="eyebrow">卷内检索结果</p>
+        <h2 id="modal-title">检索结果</h2>
         <div id="modal-body"></div>
       </section>
     </div>
 
     <footer class="site-footer">
-      <span>本网站为原创虚构悬疑游戏，与真实人物、地点、宗教或民俗团体无关。</span>
-      <span id="page-counter">00/24</span>
+      本作纯属虚构，与真实人物、地点、宗教或民俗团体无关。
     </footer>
 
+    <script src="story-data.js"></script>
+    <script src="visuals.js"></script>
     <script src="game.js"></script>
   </body>
 </html>

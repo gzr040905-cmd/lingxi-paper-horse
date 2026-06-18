@@ -1,12 +1,12 @@
 {
   "name": "临溪纸马铺",
   "short_name": "纸马铺",
-  "description": "一个通过搜索中文关键词推进的民俗悬疑网站小游戏。",
+  "description": "通过中文关键词检索推进的民俗悬疑网页小游戏。",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#171a16",
-  "theme_color": "#171a16",
+  "background_color": "#102f30",
+  "theme_color": "#102f30",
   "orientation": "any",
   "icons": [
     {
